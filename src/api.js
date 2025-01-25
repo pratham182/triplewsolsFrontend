@@ -7,6 +7,7 @@ export const submitUserData = async (submissionData) => {
   try {
     const response = await axios.post(`${backendUrl}/api/submissions/`, submissionData, {
       headers: { "Content-Type": "multipart/form-data" },
+      withCredentials: true,
     });
     return { success: true, message: response.data.message };
   } catch (error) {
@@ -21,7 +22,9 @@ export const submitUserData = async (submissionData) => {
 
 export const fetchUsers = async () => {
   try {
-    const response = await axios.get(`${backendUrl}/api/users`);
+    const response = await axios.get(`${backendUrl}/api/users`,{
+      withCredentials: true,
+    });
     return { success: true, data: response.data };
   } catch (error) {
     return {
